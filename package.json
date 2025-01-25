@@ -8,7 +8,8 @@
     "start": "next start",
     "production": "[ -e .env ] && set -a && . ./.env; next start",
     "lint": "next lint",
-    "compile": "npm run build && npm run start"
+    "compile": "npm run build && npm run start",
+    "semantic-release": "semantic-release"
   },
   "dependencies": {
     "@algolia/autocomplete-core": "^1.13.0",
