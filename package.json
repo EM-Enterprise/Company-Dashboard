@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 80 --turbo",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "production": "[ -e .env ] && set -a && . ./.env; next start",
@@ -13,6 +13,7 @@
   "dependencies": {
     "@algolia/autocomplete-core": "^1.13.0",
     "@auth/mongodb-adapter": "^3.0.0",
+    "@em-enterprise/hellocash-api": "^1.4.0",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@tailwindcss/container-queries": "^0.1.1",
@@ -20,7 +21,6 @@
     "@types/lodash": "^4.14.202",
     "date-fns": "^3.6.0",
     "framer-motion": "^11.0.20",
-    "hellocash-api": "^1.0.5",
     "install": "^0.13.0",
     "lodash": "^4.17.21",
     "mongodb": "^6.3.0",
@@ -38,7 +38,7 @@
     "use-debounce": "^10.0.0",
     "uuid": "^9.0.1",
     "winston": "^3.13.0",
-    "woocommerce-utils": "1.0.2"
+    "woocommerce-utils": "^1.0.3-beta"
   },
   "devDependencies": {
     "@types/node": "^20",
