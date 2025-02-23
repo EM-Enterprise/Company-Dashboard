@@ -1,7 +1,7 @@
 import Table from '@/components/Shared/Table/Table'
-import { Customer } from 'hellocash-api/typings/Customer'
 import CustomerHistoryButton from '@/components/customers/CustomerHistoryButton'
 import useBackend from '@/hooks/Shared/Fetch/useBackend'
+import { Customer } from '@em-enterprise/hellocash-api/schemas/customer/Customer'
 
 export default async function CustomerPage() {
   let baseCustomers = await useBackend<Customer[]>('/customers?limit=-1', { next: { revalidate: 60, tags: ['customers'] } })

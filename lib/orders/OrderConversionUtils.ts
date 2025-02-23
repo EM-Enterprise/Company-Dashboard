@@ -1,5 +1,5 @@
-import { Customer } from 'hellocash-api/typings/Customer'
 import Order from 'woocommerce-utils/helper/typings/Order'
+import { Customer } from '@em-enterprise/hellocash-api/schemas/customer/Customer'
 
 export default function orderConversionUtils({
   title_formatted: salutation,
@@ -21,17 +21,15 @@ export default function orderConversionUtils({
     salutation,
     firstName,
     lastName,
-    email: email ?? '',
-    phone,
-    country,
+    email,
     city,
     postCode,
     street,
     houseNumber,
-    birthday: null,
-    notes: [],
+    country,
     company,
-    uid_number: '',
+    phone,
+    notes: [],
   }
 }
 

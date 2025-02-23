@@ -1,5 +1,6 @@
 'use server'
-import { Customer, RawCustomers } from 'hellocash-api/typings/Customer'
+import { Customer } from '@em-enterprise/hellocash-api/schemas/customer/Customer'
+import { RawCustomers } from '@em-enterprise/hellocash-api/schemas/customer/RawCustomers'
 import getHellocashAPI from '@/lib/Shared/HelloCash'
 
 interface SuccessReponse {
