@@ -8,7 +8,7 @@ export async function GET(req: Request) {
   const limit = parseInt(params?.get('limit')?.toString() ?? '25')
 
   const { getOrders } = await getWoocommerceApi()
-  const orders = await getOrders(limit)
+  const orders = await getOrders({ per_page: limit })
 
   return NextResponse.json(orders)
 }
