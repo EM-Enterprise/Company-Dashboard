@@ -16,7 +16,6 @@ export const envSchema = z.object({
   MONGODB_EXTRA_URI_ARGS: z
     .string()
     .regex(/^(?:[^&=]+=[^&=]+)(?:&[^&=]+=[^&=]+)*$/g, "Invalid URI Argument Format. Must be in the form 'key=value' joined by '&'.")
-    .transform((val) => val?.trim() || '')
     .optional(),
 
   GITHUB_ID: z.string(),
@@ -48,7 +47,9 @@ export const envSchema = z.object({
 
 const res = envSchema.safeParse(process.env)
 if (res.error) {
-  throw new Error(`Missing Environment Variables: \n ${JSON.stringify(res.error.flatten().fieldErrors, null, 2)}`)
+  const e = new Error(`Missing Environment Variables: \n ${JSON.stringify(res.error.flatten().fieldErrors, null, 2)}`)
+  e.stack = ''
+  throw e
 }
 
 const env = envSchema.parse(process.env)
