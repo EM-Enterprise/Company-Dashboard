@@ -1,5 +1,4 @@
 'use client'
-import Order from 'woocommerce-utils/helper/typings/Order'
 import { ArrowTopRightOnSquareIcon, Cog6ToothIcon } from '@heroicons/react/24/outline'
 import { useCustomerSlideOverContext } from '@/components/orders/RegistrationProvider'
 import { useSlideOver } from '@/components/Shared/Slideover/SlideoverProvider'
@@ -7,6 +6,7 @@ import structureClasses from '@/lib/Shared/structureClasses'
 import { twMerge } from 'tailwind-merge'
 import Link from 'next/link'
 import orderConversionUtils from '@/lib/orders/OrderConversionUtils'
+import { Order } from '@em-enterprise/woocommerce-utils/schemas/orders/Order'
 
 /**
  * The visibilities of the order fields and headers.
@@ -73,13 +73,13 @@ export default function DisplayOrder({ order, href }: { order: Order; href: stri
         </span>
       </div>
       <div className={twMerge('flex gap-2', visibilities.name)}>
-        <span hidden={order.billing.title_formatted.length === 0}>{order.billing.title_formatted}</span>
+        <span hidden={order.billing.title_formatted?.length === 0}>{order.billing.title_formatted}</span>
         <span>{order.billing.first_name}</span>
         <span>{order.billing.last_name}</span>
       </div>
 
       <div className={visibilities.total}>
-        <span>{order.checkout.total.toFixed(2)} €</span>
+        <span>{order.total.toFixed(2)} €</span>
       </div>
 
       <div className='flex gap-2'>
@@ -96,7 +96,11 @@ export default function DisplayOrder({ order, href }: { order: Order; href: stri
 export function DisplayOrderHeaders({ className }: { className?: string }) {
   return (
     <div className='@container'>
-      <div className={twMerge('flex w-full gap-4 rounded-t-md bg-neutral-500 px-3 py-2 font-semibold text-white @lg:gap-8 dark:bg-neutral-900/80 dark:text-gray-200', className)}>
+      <div
+        className={twMerge(
+          'flex w-full gap-4 rounded-t-md bg-neutral-500 px-3 py-2 font-semibold text-white @lg:gap-8 dark:bg-neutral-900/80 dark:text-gray-200',
+          className,
+        )}>
         <span className={visibilities.id}>Nr.</span>
         {/*the margins classes are used to center the status-column-label when the indicator is shown, then to align it with status idicator and status-label*/}
         <span className={twMerge(visibilities.status, '-ml-6 -mr-4 @xl:-mr-0 @xl:ml-0')}>Status</span>

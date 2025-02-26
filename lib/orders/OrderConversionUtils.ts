@@ -1,5 +1,5 @@
-import Order from 'woocommerce-utils/helper/typings/Order'
 import { Customer } from '@em-enterprise/hellocash-api/schemas/customer/Customer'
+import { Order } from '@em-enterprise/woocommerce-utils/schemas/orders/Order'
 
 export default function orderConversionUtils({
   title_formatted: salutation,
@@ -24,12 +24,11 @@ export default function orderConversionUtils({
     email,
     city,
     postCode,
-    street,
     houseNumber,
-    country,
-    company,
+    street,
     phone,
-    notes: [],
+    company: company || undefined,
+    country,
   }
 }
 
@@ -38,8 +37,8 @@ export default function orderConversionUtils({
  * @param address1 Typically the main address
  * @param address2 Sometimes the address_2 is used for the housenumber or additional information
  */
-function mergeAddresses(address1: string, address2: string) {
-  if (address2.trim().length === 0) return address1
+function mergeAddresses(address1: string, address2: string | null) {
+  if (address2 === null || address2?.trim()?.length === 0) return address1
 
   const uniqueAddress2 = address2.replace(address1, '').trim()
 
