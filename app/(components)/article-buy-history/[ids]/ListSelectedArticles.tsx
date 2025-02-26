@@ -1,6 +1,6 @@
 import useBackend from '@/hooks/Shared/Fetch/useBackend'
-import { Article } from 'hellocash-api/typings/Article'
 import Each from '@/lib/Shared/Each'
+import { Article } from '@em-enterprise/hellocash-api/schemas/article/Article'
 
 /**
  * Retrieves the products-names based on the given ids and lists them in an ordered-list.
@@ -13,7 +13,7 @@ export default async function ListSelectedArticles({ article_ids }: { article_id
 
   return (
     <ol className='ml-4 mt-4 flex list-decimal flex-col gap-2 pl-4 text-gray-400'>
-      <Each items={article_ids} render={(id) => <li key={id}>{getName(id)}</li>} />
+      <Each<(typeof article_ids)[number]> items={article_ids} render={(id) => <li key={id}>{getName(id)}</li>} />
     </ol>
   )
 }
