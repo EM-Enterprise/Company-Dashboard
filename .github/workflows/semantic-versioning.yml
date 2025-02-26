@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies
         run: yarn
 
+      - name: Login to GitHub Package Registry
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" > ~/.npmrc
+        
       - name: Run semantice release
         run: |
           npm run semantic-release
