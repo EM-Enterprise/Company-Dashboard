@@ -27,12 +27,12 @@ jobs:
         with:
           node-version: 21
 
-      - name: Install dependencies
-        run: yarn
-
       - name: Login to GitHub Package Registry
         run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" > ~/.npmrc
         
+      - name: Install dependencies
+        run: yarn
+
       - name: Run semantice release
         run: |
           npm run semantic-release
