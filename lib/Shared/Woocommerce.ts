@@ -4,7 +4,7 @@ import Woocommerce from '@em-enterprise/woocommerce-utils'
 
 export default async function getWoocommerceApi() {
   const woocommerce = new Woocommerce({
-    url: env.WOOCOMMERCE_DOMAIN,
+    url: env.WOOCOMMERCE_API_DOMAIN,
     consumerKey: env.WOOCOMMERCE_CONSUMER_KEY,
     consumerSecret: env.WOOCOMMERCE_CONSUMER_SECRET,
   })

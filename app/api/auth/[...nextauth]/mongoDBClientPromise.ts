@@ -1,7 +1,8 @@
 import { MongoClient, MongoClientOptions } from 'mongodb'
 import env from '@/lib/root/Environment'
 
-const uri = env.MONGODB_URI
+const args = env.MONGODB_EXTRA_URI_ARGS ? `/?${env.MONGODB_EXTRA_URI_ARGS}` : ''
+const uri = `mongodb://${env.DATABASE_HOST_IP}:${env.DATABASE_PORT}${args}`
 const options: MongoClientOptions = {}
 
 let client: MongoClient
