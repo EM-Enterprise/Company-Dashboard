@@ -43,3 +43,6 @@ next-env.d.ts
 
 # Shell Scripts
 *.sh
+
+.actrc
+.github-secrets
