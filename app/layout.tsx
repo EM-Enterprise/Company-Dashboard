@@ -7,6 +7,7 @@ import { useColorModeValue } from '@/lib/Shared/ColorModeHandler'
 import AuthProvider from '@/app/(components)/root/AuthProvider'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import '@/lib/root/Environment'
 
 const inter = Inter({ subsets: ['latin'] })
 

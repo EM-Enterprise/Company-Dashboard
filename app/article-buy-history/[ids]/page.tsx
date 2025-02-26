@@ -1,10 +1,10 @@
-import { Invoice } from 'hellocash-api/typings/Invoice'
 import Link from 'next/link'
 import InvoiceHistoryFeed from '@/components/Shared/Feeds/History/InvoiceHistoryFeed'
 import Each from '@/lib/Shared/Each'
 import getKeys from '@/lib/Shared/Keys'
 import ListSelectedArticles from '@/components/article-buy-history/[ids]/ListSelectedArticles'
 import parseArticleHistoryParams from '@/lib/articles/[ids]/parseArticleHistoryParams'
+import { Invoice } from '@em-enterprise/hellocash-api/schemas/invoice/Invoice'
 
 const MAX_YEARS_DIFFERENCE = 4
 

@@ -1,26 +1,24 @@
-# First Stage: Build the Application
-FROM node:18-alpine AS builder
+# First Step - Install Packages in seperate step for caching purposes.
 
-# Set the working directory
+FROM node:18-alpine AS package-installer
 WORKDIR /app
 
-# Copy the package.json, package-lock.json, and .env file
-COPY package*.json ./
-COPY yarn.lock ./
-COPY .env ./
+COPY package.json .
+COPY yarn.lock .
 
-# Install dependencies
-RUN yarn cache clean
-RUN yarn --update-checksums
 RUN yarn install
 
-# Copy the rest of the application code
+# Second Step - Build the application
+FROM node:18-alpine AS builder
+
+WORKDIR /app
+
+COPY --from=package-installer /app/node_modules /app/node_modules
 COPY . .
 
-# Build the Next.js application
 RUN npm run build
 
-# Second Stage: Run the Application
+# Final Stage: Run the Application
 FROM node:18-alpine
 
 # Set the working directory

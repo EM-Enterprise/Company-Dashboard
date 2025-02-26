@@ -1,17 +1,13 @@
 'use server'
-import * as api from 'woocommerce-utils'
-import { setCredentials } from 'woocommerce-utils/dist/helper/Api'
+import env from '@/lib/root/Environment'
+import Woocommerce from '@em-enterprise/woocommerce-utils'
 
 export default async function getWoocommerceApi() {
-  if (!process.env.WOOCOMMERCE_CONSUMER_KEY) throw new Error('Missing WOOCOMMERCE_CONSUMER_KEY')
-  if (!process.env.WOOCOMMERCE_CONSUMER_SECRET) throw new Error('Missing WOOCOMMERCE_CONSUMER_SECRET')
-  if (!process.env.WOOCOMMERCE_DOMAIN) throw new Error('Missing WOOCOMMERCE_DOMAIN')
-
-  setCredentials({
-    consumerKey: process.env.WOOCOMMERCE_CONSUMER_KEY,
-    consumerSecret: process.env.WOOCOMMERCE_CONSUMER_SECRET,
-    domain: process.env.WOOCOMMERCE_DOMAIN,
+  const woocommerce = new Woocommerce({
+    url: env.WOOCOMMERCE_API_DOMAIN,
+    consumerKey: env.WOOCOMMERCE_CONSUMER_KEY,
+    consumerSecret: env.WOOCOMMERCE_CONSUMER_SECRET,
   })
 
-  return api
+  return woocommerce
 }
