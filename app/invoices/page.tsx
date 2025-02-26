@@ -1,7 +1,7 @@
 import useBackend from '@/hooks/Shared/Fetch/useBackend'
-import { Invoice } from 'hellocash-api/typings/Invoice'
 import Table from '@/components/Shared/Table/Table'
 import InvoicePDFButton from '@/components/invoices/InvoicePDFButton'
+import { Invoice } from '@em-enterprise/hellocash-api/schemas/invoice/Invoice'
 
 export default async function InvoicesPage() {
   let invoices = await useBackend<Invoice[]>('/invoices?limit=100', { next: { revalidate: 3600 * 24, tags: ['invoices'] } })

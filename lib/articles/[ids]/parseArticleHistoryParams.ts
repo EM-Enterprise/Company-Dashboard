@@ -1,7 +1,7 @@
-import { Invoice } from 'hellocash-api/typings/Invoice'
 import useBackend from '@/hooks/Shared/Fetch/useBackend'
 import { notFound } from 'next/navigation'
 import filterInvoices, { FilterInvoicesParams } from '@/lib/articles/[ids]/filterInvoices'
+import { Invoice } from '@em-enterprise/hellocash-api/schemas/invoice/Invoice'
 
 interface ArticleSelectionParams {
   searchParams: { ids?: string }

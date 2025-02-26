@@ -1,11 +1,6 @@
-import * as api from 'hellocash-api/dist/index'
-import { setAuthorization } from 'hellocash-api/dist/api/Config'
+import HellocashApi from '@em-enterprise/hellocash-api'
 import env from '@/lib/root/Environment'
 
-const { HELLOCASH_TOKEN } = env
-
 export default function getHellocashAPI() {
-  setAuthorization(HELLOCASH_TOKEN)
-
-  return api
+  return new HellocashApi(env.HELLOCASH_TOKEN)
 }
