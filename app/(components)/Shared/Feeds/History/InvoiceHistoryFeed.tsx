@@ -1,4 +1,3 @@
-import { Invoice } from 'hellocash-api/typings/Invoice'
 import Each from '@/lib/Shared/Each'
 import { formatDate, formatDistance } from 'date-fns'
 import { CheckCircleIcon } from '@heroicons/react/24/solid'
@@ -6,6 +5,8 @@ import FeedContainer from '@/components/Shared/Feeds/FeedContainer'
 import Feed from '@/components/Shared/Feeds/Feed'
 import MinorFeed from '@/components/Shared/Feeds/MinorFeed'
 import { ReactNode } from 'react'
+import { Invoice } from '@em-enterprise/hellocash-api/schemas/invoice/Invoice'
+import { InvoiceItem } from '@em-enterprise/hellocash-api/schemas/invoice/InvoiceItem'
 
 const defaultInvoiceDescription = (invoice: Invoice) => {
   const name = `${invoice?.customer?.firstName ?? ''} ${invoice?.customer?.lastName ?? ''}`.trim()
@@ -36,13 +37,13 @@ export default async function InvoiceHistoryFeed({
 }) {
   return (
     <FeedContainer>
-      <Each
+      <Each<Invoice>
         items={invoices}
         render={(invoice, index) => (
           <>
             <Feed
               key={invoice.id}
-              link={`/invoices/pdf/${invoice._id}`}
+              link={`/invoices/pdf/${invoice.system_id}`}
               icon={invoiceIcon(invoice)}
               title={'#' + invoice.id.toString()}
               description={invoiceDescription(invoice)}
@@ -68,7 +69,7 @@ function InvoiceItemFeed({ invoice, isLast, show }: { invoice: Invoice; isLast: 
 
   return (
     <FeedContainer>
-      <Each
+      <Each<InvoiceItem>
         items={invoice.items.filter((i) => !i.name.toLowerCase().includes('versand'))}
         render={(item, item_index) => (
           <MinorFeed

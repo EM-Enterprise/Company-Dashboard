@@ -1,9 +1,9 @@
 'use client'
 import useContextHandler from '@/hooks/Shared/Context/useContextHandler'
 import ReactState from '@/typings/ReactState'
-import { Customer } from 'hellocash-api/typings/Customer'
 import { createContext, ReactNode, useId, useState } from 'react'
-import Order from 'woocommerce-utils/helper/typings/Order'
+import { Order } from '@em-enterprise/woocommerce-utils/schemas/orders/Order'
+import { Customer } from '@em-enterprise/hellocash-api/schemas/customer/Customer'
 
 interface CustomerRegistrationContextProps {
   order: Order | null

@@ -1,13 +1,13 @@
 'use client'
 
-import { Article } from 'hellocash-api/typings/Article'
-import { ArticleCategory } from 'hellocash-api/typings/Category'
 import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Each from '@/lib/Shared/Each'
 import { useDebounce } from 'use-debounce'
 import Link from 'next/link'
 import { CircleStackIcon } from '@heroicons/react/24/outline'
+import { Article } from '@em-enterprise/hellocash-api/schemas/article/Article'
+import { ArticleCategory } from '@em-enterprise/hellocash-api/schemas/article/category/ArticleCategory'
 
 export default function ArticleTable({ articles: initialArticles, categories }: { articles: Article[]; categories: ArticleCategory[] }) {
   const [articles, setArticles] = useState(initialArticles)
@@ -25,7 +25,7 @@ export default function ArticleTable({ articles: initialArticles, categories }: 
         (a) =>
           a.name.toLowerCase().includes(debouncedValue.toLowerCase()) ||
           categories
-            .find((c) => c.id === a.category)
+            .find((c) => c.id === a.category_id)
             ?.name.toLowerCase()
             .includes(debouncedValue.toLowerCase()),
       ),
@@ -81,7 +81,7 @@ export default function ArticleTable({ articles: initialArticles, categories }: 
             </tr>
           </thead>
           <tbody className='space-y-24 divide-y divide-gray-400 px-2 dark:divide-neutral-500'>
-            <Each
+            <Each<Article>
               items={articles}
               render={(article, index) => (
                 <tr
@@ -106,7 +106,7 @@ export default function ArticleTable({ articles: initialArticles, categories }: 
                   <td className='hidden @xl:table-cell'>{article.id}</td>
                   <td className='hidden min-w-2 @xl:table-cell'></td>
                   <td className='line-clamp-2 table-cell max-w-48 pr-4'>{article.name}</td>
-                  <td className='hidden pr-4 text-right @3xl:table-cell'>{<span>{categories.find((c) => c.id === article.category)?.name}</span>}</td>
+                  <td className='hidden pr-4 text-right @3xl:table-cell'>{<span>{categories.find((c) => c.id === article.category_id)?.name}</span>}</td>
                 </tr>
               )}
             />

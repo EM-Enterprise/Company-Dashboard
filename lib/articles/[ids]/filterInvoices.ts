@@ -1,5 +1,5 @@
-import { Invoice } from 'hellocash-api/typings/Invoice'
-import { Customer } from 'hellocash-api/typings/Customer'
+import { Invoice } from '@em-enterprise/hellocash-api/schemas/invoice/Invoice'
+import { Customer } from '@em-enterprise/hellocash-api/schemas/customer/Customer'
 import getKeys from '@/lib/Shared/Keys'
 
 /**
